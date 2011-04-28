@@ -1,6 +1,6 @@
 #!/usr/bin/python
-import sys
 import os
+import sys
 import gzip
 
 skip_evidence_codes = ['ISS','ISO','ISA','ISM','IGC']
@@ -8,7 +8,7 @@ skip_evidence_codes = ['ISS','ISO','ISA','ISM','IGC']
 usage_mesg = 'Usage: GO-make-linkage.py <gene_associtation> <termset>'
 
 if( len(sys.argv) != 3 ):
-    sys.stderr.write(usage_mesg+'(%d)'%(len(sys.argv))+"\n"(
+    sys.stderr.write(usage_mesg+'(%d)'%(len(sys.argv))+"\n")
     sys.exit(1)
 
 filename_goa = sys.argv[1]
@@ -55,10 +55,10 @@ for line in f_GOA:
         continue
 
     tokens = line.strip().split("\t")
-    gene_id = tokens[1]
+    gene_id = tokens[2]
     go_id = tokens[4]
     go_evidence = tokens[6]
-    #print gene_id,"XX",go_id,go_evidence
+    #print gene_id,"XX",go_id,"YY",go_evidence
 
     if( go_evidence in skip_evidence_codes ):
         continue
