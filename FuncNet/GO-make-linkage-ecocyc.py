@@ -5,7 +5,7 @@ import gzip
 
 skip_evidence_codes = ['ISS','ISO','ISA','ISM','IGC']
 
-usage_mesg = 'Usage: GO-make-linkage.py <gene_associtation> <termset>'
+usage_mesg = 'Usage: GO-make-linkage-ecocyc.py <gene_associtation> <termset>'
 
 if( len(sys.argv) != 3 ):
     sys.stderr.write(usage_mesg+'(%d)'%(len(sys.argv))+"\n")
@@ -55,7 +55,10 @@ for line in f_GOA:
         continue
 
     tokens = line.strip().split("\t")
-    gene_id = tokens[2]
+    ## Ignore record without proper id
+    if( tokens[10].find('|b') < 0 ):
+        continue
+    gene_id = tokens[10].split('|')[-2]
     go_id = tokens[4]
     go_evidence = tokens[6]
     #print gene_id,"XX",go_id,"YY",go_evidence
